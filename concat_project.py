@@ -5,8 +5,8 @@ from pathlib import Path
 
 def collect_files(root_dir, output_file, encoding='utf-8', ignore_extensions=None):
     """
-    تمام فایل‌های موجود در root_dir (به‌صورت بازگشتی) را خوانده و با هدر مسیر،
-    در output_file ذخیره می‌کند.
+    Recursively reads all files in root_dir and saves them to output_file
+    with a path header.
     """
     if ignore_extensions is None:
         ignore_extensions = ['.pyc', '.pyo', '.so', '.dll', '.exe',
@@ -16,52 +16,52 @@ def collect_files(root_dir, output_file, encoding='utf-8', ignore_extensions=Non
 
     root_path = Path(root_dir)
     if not root_path.is_dir():
-        raise NotADirectoryError(f"'{root_dir}'不是一个有效的目录")
+        raise NotADirectoryError(f"'{root_dir}' is not a valid directory")
 
     with open(output_file, 'w', encoding=encoding) as out_f:
         for file_path in root_path.rglob('*'):
-            # فقط فایل‌های معمولی (نه پوشه) را پردازش کن
+            # Process only regular files (not directories)
             if not file_path.is_file():
                 continue
 
-            # اگر پسوند فایل در لیست نادیده‌گرفته‌ها باشد، رد کن
+            # Skip if the file extension is in the ignore list
             if file_path.suffix.lower() in ignore_extensions:
                 continue
 
-            # نوشتن هدر شامل مسیر نسبی و کامل
+            # Write header with relative and full path
             relative_path = file_path.relative_to(root_path)
             out_f.write(f"===== File: {relative_path} (full: {file_path.resolve()}) =====\n")
 
-            # خواندن محتوای فایل و نوشتن آن
+            # Read and write file content
             try:
                 with open(file_path, 'r', encoding=encoding) as in_f:
                     content = in_f.read()
                     out_f.write(content)
-                    # در صورت نیاز یک خط جدید در انتها اضافه کن
+                    # Add a newline at the end if needed
                     if content and not content.endswith('\n'):
                         out_f.write('\n')
             except Exception as e:
-                out_f.write(f"[خطا در خواندن فایل: {e}]\n")
+                out_f.write(f"[Error reading file: {e}]\n")
 
-            # جداکننده بین فایل‌ها
+            # Separator between files
             out_f.write("\n\n")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="همه فایل‌های یک پروژه را به‌صورت بازگشتی با هدر مسیر، در یک فایل جمع‌آوری می‌کند."
+        description="Recursively collects all files of a project with a path header into a single file."
     )
-    parser.add_argument("source_dir", help="پوشه ریشه پروژه")
+    parser.add_argument("source_dir", help="Root directory of the project")
     parser.add_argument("-o", "--output", default="project_files_concat.txt",
-                        help="نام فایل خروجی (پیش‌فرض: project_files_concat.txt)")
+                        help="Output file name (default: project_files_concat.txt)")
     parser.add_argument("--encoding", default="utf-8",
-                        help="کدگذاری برای خواندن/نوشتن (پیش‌فرض: utf-8)")
+                        help="Encoding for reading/writing (default: utf-8)")
     parser.add_argument("--ignore", nargs="*",
-                        help="لیست پسوندهای نادیده‌گرفته (مثلاً .pyc .jpg) - در صورت ذکر نشدن، لیست پیش‌فرض استفاده می‌شود")
+                        help="List of extensions to ignore (e.g., .pyc .jpg) - if not specified, the default list is used")
 
     args = parser.parse_args()
 
-    # تعیین لیست نادیده‌گرفته‌ها
+    # Determine the ignore list
     if args.ignore is not None:
         ignore_list = [ext if ext.startswith('.') else f'.{ext}' for ext in args.ignore]
     else:
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     try:
         collect_files(args.source_dir, args.output, encoding=args.encoding, ignore_extensions=ignore_list)
-        print(f"عملیات با موفقیت انجام شد. خروجی در فایل '{args.output}' ذخیره گردید.")
+        print(f"Operation successful. Output saved to '{args.output}'.")
     except Exception as e:
-        print(f"خطا: {e}", file=sys.stderr)
+        print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
