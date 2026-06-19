@@ -59,14 +59,6 @@ python --version
 
 ---
 
-# 📥 Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/project-file-collector.git
-```
-
 Move into the project directory:
 
 ```bash
