@@ -35,19 +35,6 @@ No third-party dependencies are required.
 
 ---
 
-## Installation
-
-Clone the repository:
-
-```bash
-git clone <repository-url>
-cd <repository-folder>
-```
-
-No additional packages need to be installed.
-
----
-
 ## Usage
 
 ### Basic Usage
