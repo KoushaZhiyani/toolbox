@@ -63,6 +63,30 @@ A lightweight utility for inspecting SQLite databases and exporting table struct
 📖 See: `SQLite_Database_Preview/README.md`
 
 ---
+### 🧹 SQL Insert Cleaner
+
+A lightweight utility for cleaning and transforming SQL `INSERT INTO` statements by removing unwanted columns and optionally renaming destination tables.
+
+**Use cases:**
+
+* Database migration
+* ETL preprocessing
+* Legacy system cleanup
+* SQL dump transformation
+* Schema refactoring
+
+**Key Features**
+
+* SQL INSERT parsing
+* Flexible column exclusion rules
+* Table renaming support
+* Regex-based filtering
+* SQL function preservation
+* Clean output generation
+
+📖 See: `SQL_Insert_Cleaner/README.md`
+
+---
 
 ## 🚀 Why This Repository Exists
 
@@ -91,9 +115,12 @@ toolbox/
 │   ├── README.md
 │   └── ...
 │
+├── SQL_Insert_Cleaner/
+│   ├── README.md
+│   └── ...
+│
 └── README.md
 ```
-
 ---
 
 ## 🛠 Requirements
@@ -113,6 +140,7 @@ Planned categories include:
 
 * File Processing Tools
 * Database Utilities
+* SQL Transformation Tools
 * Data Cleaning Scripts
 * Automation Helpers
 * CLI Productivity Tools
