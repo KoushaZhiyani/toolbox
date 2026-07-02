@@ -88,20 +88,6 @@ A lightweight utility for cleaning and transforming SQL `INSERT INTO` statements
 
 ---
 
-## 🚀 Why This Repository Exists
-
-Over time, many small utilities are created to solve recurring development tasks. Storing them across multiple repositories can make discovery and maintenance difficult.
-
-This repository provides a centralized location for:
-
-* Reusable scripts
-* Development utilities
-* Database tools
-* Automation helpers
-* Documentation generators
-
----
-
 ### 🗑 Rows Delete by Date
 
 A command-line utility for deleting rows from database tables based on a specified date using `DATE`, `DATETIME`, or `TIMESTAMP` columns.
@@ -126,6 +112,21 @@ Supports multiple database engines through SQLAlchemy and includes a safe dry-ru
 * Single-table or all-table processing
 
 📖 See: `Rows_Delete_by_Date/README.md`
+
+---
+
+## 🚀 Why This Repository Exists
+
+Over time, many small utilities are created to solve recurring development tasks. Storing them across multiple repositories can make discovery and maintenance difficult.
+
+This repository provides a centralized location for:
+
+* Reusable scripts
+* Development utilities
+* Database tools
+* Automation helpers
+* Documentation generators
+
 
 ---
 ## 📁 Repository Structure
