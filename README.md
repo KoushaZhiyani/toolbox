@@ -102,6 +102,32 @@ This repository provides a centralized location for:
 
 ---
 
+### 🗑 Rows Delete by Date
+
+A command-line utility for deleting rows from database tables based on a specified date using `DATE`, `DATETIME`, or `TIMESTAMP` columns.
+
+Supports multiple database engines through SQLAlchemy and includes a safe dry-run mode to preview deletions before execution.
+
+**Use cases:**
+
+* Data cleanup
+* Removing daily import records
+* ETL reruns
+* Test data reset
+* Scheduled maintenance tasks
+
+**Key Features**
+
+* Multi-database support (DuckDB, SQLite, PostgreSQL, MySQL, SQL Server)
+* Automatic table discovery
+* Automatic date/time column detection
+* Dry-run mode by default
+* Interactive confirmation before deletion
+* Single-table or all-table processing
+
+📖 See: `Rows_Delete_by_Date/README.md`
+
+---
 ## 📁 Repository Structure
 
 ```text
@@ -116,6 +142,10 @@ toolbox/
 │   └── ...
 │
 ├── SQL_Insert_Cleaner/
+│   ├── README.md
+│   └── ...
+│
+├── Rows_Delete_by_Date/
 │   ├── README.md
 │   └── ...
 │
